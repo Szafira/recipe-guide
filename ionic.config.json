@@ -1,8 +1,7 @@
 {
-  "name": "RecipeGuide",
+  "name": "testApp",
   "integrations": {
     "capacitor": {}
   },
-  "type": "vue",
-  "id": "d2d7ea37"
+  "type": "vue"
 }
