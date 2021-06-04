@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import Home from '../views/Home.vue'
+import Home from '../views/Home.vue';
+import ViewInput from '.../views/ViewInput.vue';
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,6 +13,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/home',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '',
+    name: 'ViewInput',
+    component: ViewInput
+   
   },
   {
     path: '/message/:id',
