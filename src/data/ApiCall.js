@@ -1,7 +1,7 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var xhr = new XMLHttpRequest();
 
-var zdanie = "tomatoes,pasta";
+var zdanie = searchInput;
 var podzielone = zdanie.split(",", 10);
 
 

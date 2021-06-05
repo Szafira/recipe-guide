@@ -6,10 +6,17 @@
         
       </ion-toolbar>
       <ion-toolbar>
+<<<<<<< Updated upstream
       <ion-searchbar></ion-searchbar>
+=======
+      <ion-label position="floating">Wyszukiwanie</ion-label>
+      <ion-input type="text" v-model="inputVal">{{value}}</ion-input>
+      <ion-button name="searchButton"> Wyszukaj </ion-button>      
+>>>>>>> Stashed changes
       </ion-toolbar>
+      
     </ion-header>
-    
+        
     <ion-content :fullscreen="true">
       <ion-refresher slot="fixed" @ionRefresh="refresh($event)">
         <ion-refresher-content></ion-refresher-content>
@@ -18,14 +25,8 @@
       <ion-header collapse="condense">
         <ion-toolbar>
           <ion-title size="large">Recipe Guide</ion-title>
-           
-        </ion-toolbar>
-          
-        
-          
-      
+        </ion-toolbar> 
       </ion-header>
-      
       <ion-list>
         <RecipeListItem v-for="result in results" :key="result.id" :result="result" />
       </ion-list>
@@ -41,6 +42,8 @@ import { getResults } from '@/data/ApiResults';
 
 export default defineComponent({
   name: 'Home',
+  props:
+    ['value'],
   data() {
     return {
       results: getResults()
@@ -51,7 +54,7 @@ export default defineComponent({
       setTimeout(() => {
         ev.detail.complete();
       }, 3000);
-    }
+    },
   },
   components: {
     IonContent,
