@@ -5,8 +5,15 @@
         <ion-title>Recipe Guide</ion-title>
         
       </ion-toolbar>
+
       <ion-toolbar>
-      <ion-searchbar></ion-searchbar>
+            
+    <ion-label position="floating">Wyszukiwanie</ion-label>
+    <ion-input></ion-input>
+     <button ion-button round (click)="post()"> Wyszukaj </button>      
+
+
+
       </ion-toolbar>
     </ion-header>
     
@@ -34,7 +41,8 @@
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar,  } from '@ionic/vue';
+import { IonContent, IonHeader, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar, IonInput, IonLabel, IonButton
+   } from '@ionic/vue';
 import RecipeListItem from '@/components/RecipeListItem.vue';
 import { defineComponent } from 'vue';
 import { getResults } from '@/data/ApiResults';
@@ -63,6 +71,11 @@ export default defineComponent({
     IonTitle,
     IonToolbar,
     
+    IonButton,
+    IonLabel,
+    IonInput,
+    
+
     RecipeListItem
   },
 });
