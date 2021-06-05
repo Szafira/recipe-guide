@@ -1,18 +1,21 @@
 <template>
-  <ion-item v-if="message" :routerLink="'/message/' + message.id" :detail="false" class="list-item">
-    <div slot="start" :class="!message.read ? 'dot dot-unread' : 'dot'"></div>
+  <ion-item v-if="result" :routerLink="'/result/' + result.id" :detail="false" class="list-item">
+    
     <ion-label class="ion-text-wrap">
+          <ion-thumbnail slot="start">
+      <ion-img :src="result.thumbnail"></ion-img>
+    </ion-thumbnail>
+      
+
       <h2>
-        {{ message.fromName }}
-        <span class="date">
-          <ion-note>{{ message.date }}</ion-note>
+        {{ result.title }}
+        
+          
           <ion-icon :icon="chevronForward" size="small" v-if="isIos()"></ion-icon>
-        </span>
+        
       </h2>
-      <h3>{{ message.subject }}</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <h3>{{ result.ingredients }}</h3>
+      <ion-button :href="result.href" color="secondary"  >Przepis</ion-button>
     </ion-label>
   </ion-item>
 </template>
@@ -23,15 +26,15 @@ import { chevronForward } from 'ionicons/icons';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'MessageListItem',
+  name: 'RecipeListItem',
   components: {
     IonIcon,
     IonItem,
     IonLabel,
-    IonNote,
+    
   },
   props: {
-    message: Object,
+    result: Object,
   },
   methods: {
     isIos: () => {
@@ -68,11 +71,7 @@ export default defineComponent({
   width: 95%;
 }
 
-.list-item .date {
-  float: right;
-  align-items: center;
-  display: flex;
-}
+
 
 .list-item ion-icon {
   color: #c9c9ca;
@@ -88,16 +87,5 @@ export default defineComponent({
   margin-right: 14px;
 }
 
-.list-item .dot {
-  display: block;
-  height: 12px;
-  width: 12px;
-  border-radius: 50%;
-  align-self: start;
-  margin: 16px 10px 16px 16px;
-}
 
-.list-item .dot-unread {
-  background: var(--ion-color-primary);
-}
 </style>
