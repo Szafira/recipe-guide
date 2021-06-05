@@ -2,10 +2,21 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Inbox</ion-title>
+        <ion-title>Recipe Guide</ion-title>
+        
       </ion-toolbar>
+      <ion-toolbar>
+<<<<<<< Updated upstream
+      <ion-searchbar></ion-searchbar>
+=======
+      <ion-label position="floating">Wyszukiwanie</ion-label>
+      <ion-input type="text" v-model="inputVal">{{value}}</ion-input>
+      <ion-button name="searchButton"> Wyszukaj </ion-button>      
+>>>>>>> Stashed changes
+      </ion-toolbar>
+      
     </ion-header>
-    
+        
     <ion-content :fullscreen="true">
       <ion-refresher slot="fixed" @ionRefresh="refresh($event)">
         <ion-refresher-content></ion-refresher-content>
@@ -13,28 +24,29 @@
       
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Inbox</ion-title>
-        </ion-toolbar>
+          <ion-title size="large">Recipe Guide</ion-title>
+        </ion-toolbar> 
       </ion-header>
-      
       <ion-list>
-        <MessageListItem v-for="message in messages" :key="message.id" :message="message" />
+        <RecipeListItem v-for="result in results" :key="result.id" :result="result" />
       </ion-list>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar } from '@ionic/vue';
-import MessageListItem from '@/components/MessageListItem.vue';
+import { IonContent, IonHeader, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar,  } from '@ionic/vue';
+import RecipeListItem from '@/components/RecipeListItem.vue';
 import { defineComponent } from 'vue';
-import { getMessages } from '@/data/messages';
+import { getResults } from '@/data/ApiResults';
 
 export default defineComponent({
   name: 'Home',
+  props:
+    ['value'],
   data() {
     return {
-      messages: getMessages()
+      results: getResults()
     }
   },
   methods: {
@@ -42,7 +54,7 @@ export default defineComponent({
       setTimeout(() => {
         ev.detail.complete();
       }, 3000);
-    }
+    },
   },
   components: {
     IonContent,
@@ -53,7 +65,14 @@ export default defineComponent({
     IonRefresherContent,
     IonTitle,
     IonToolbar,
-    MessageListItem
+    
+    RecipeListItem
   },
 });
 </script>
+<style scoped>
+ion-toolbar {
+    --background: var(--ion-color-tertiary);
+    --color: var(--ion-color-tertiary-contrast);
+  }
+</style>
