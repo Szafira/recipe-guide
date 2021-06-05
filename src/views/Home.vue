@@ -6,13 +6,9 @@
         
       </ion-toolbar>
       <ion-toolbar>
-<<<<<<< Updated upstream
-      <ion-searchbar></ion-searchbar>
-=======
       <ion-label position="floating">Wyszukiwanie</ion-label>
       <ion-input type="text" v-model="inputVal">{{value}}</ion-input>
       <ion-button name="searchButton"> Wyszukaj </ion-button>      
->>>>>>> Stashed changes
       </ion-toolbar>
       
     </ion-header>
