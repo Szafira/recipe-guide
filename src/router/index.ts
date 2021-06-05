@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import Home from '../views/Home.vue';
-import ViewInput from '.../views/ViewInput.vue';
-
+import Home from '../views/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,14 +13,8 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: '',
-    name: 'ViewInput',
-    component: ViewInput
-   
-  },
-  {
     path: '/message/:id',
-    component: () => import('../views/ViewMessage.vue')
+    component: () => import('../views/ViewMessage.vue') 
   }
 ]
 
