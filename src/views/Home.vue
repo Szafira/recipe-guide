@@ -6,11 +6,9 @@
         
       </ion-toolbar>
       <ion-toolbar>
-      <ion-label position="floating">Search</ion-label>
-      <div id="container">
-        <ion-searchbar v-on:keyup.enter="getSearch(inputVal)" color="light" v-model="inputVal" placeholder="Search by ingredients"></ion-searchbar>
-        <ion-button v-on:keyup.enter="getSearch(inputVal)" @click="getSearch(inputVal)">Search</ion-button>
-      </div>
+      <ion-label position="floating">Wyszukiwanie</ion-label>
+      <ion-input type="text" v-model="inputVal" placeholder="Pick up ingredients"></ion-input>
+      <ion-button name="searchButton" @click="refresh(inputVal)" > Wyszukaj </ion-button>      
       </ion-toolbar>
       
     </ion-header>
@@ -33,13 +31,13 @@
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar,IonButton,IonSearchbar,IonLabel  } from '@ionic/vue';
+import { IonContent, IonHeader, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar,IonButton,IonInput,IonLabel  } from '@ionic/vue';
 import RecipeListItem from '@/components/RecipeListItem.vue';
 import { defineComponent } from 'vue';
 import { getResults } from '@/data/ApiResults';
 import ApiCall from '@/data/ApiCall';
 
-//const AddInputValue() = set InputVal;
+
 export default defineComponent({
   name: 'Home',
   props:
@@ -51,9 +49,6 @@ export default defineComponent({
     }
   },
   methods: {
-    async getSearch(payload: any) {
-      this.ApiCall(this.inputValue);
-    },
     refresh: (ev: CustomEvent) => {
       setTimeout(() => {
         ev.detail.complete();
@@ -71,7 +66,7 @@ export default defineComponent({
     IonToolbar,
 
     IonLabel,
-    IonSearchbar,
+    IonInput,
     IonButton,
     
     RecipeListItem
