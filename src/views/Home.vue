@@ -8,7 +8,7 @@
       <ion-toolbar>
       <ion-label position="floating">Wyszukiwanie</ion-label>
       <ion-input type="text" v-model="inputVal" placeholder="Pick up ingredients"></ion-input>
-      <ion-button name="searchButton" @click="ApiCall()" > Wyszukaj </ion-button>      
+      <ion-button name="searchButton" v-on:click="getUrl" > Wyszukaj </ion-button>      
       </ion-toolbar>
       
     </ion-header>
@@ -35,12 +35,12 @@ import { IonContent, IonHeader, IonList, IonPage, IonRefresher, IonRefresherCont
 import RecipeListItem from '@/components/RecipeListItem.vue';
 import { defineComponent } from 'vue';
 import { getResults } from '@/data/ApiResults';
-import * as Api from '@/data/ApiCall'
+const inputVal = ['inputVal'];
+const XMLHttpRequest = require("./../../node_modules/xmlhttprequest").XMLHttpRequest;
 
-  function ApiCall()
-      {
-        return Api.ApiCall();
-      }
+const request = new XMLHttpRequest()
+const urlBase ="http://www.recipepuppy.com/api/?i=";
+
 export default defineComponent({
   name: 'Home',
   props:
@@ -56,11 +56,39 @@ export default defineComponent({
       setTimeout(() => {
         ev.detail.complete();
       }, 3000);
-      {
-      ApiCall();
       }
-      }
+      
     },
+   getUrl: function(){
+  const ingredients = inputVal;
+  const fullUrl = urlBase + ingredients;
+  const fs = require('fs');
+  console.log(fullUrl);
+
+  request.open('GET', fullUrl, true)
+
+  request.onload = function () {
+    // Begin accessing JSON data here
+    const data = this.responseText;
+    const parsed = JSON.parse(data);
+    const jsonToString = JSON.stringify(parsed.results)
+
+    console.log(parsed.results);  
+
+  //Zapisanie do pliku
+  const readyToFile = "export interface Result {\ntitle: string;\nthumbnail: string;\ningredients: string;\nhref: string;\n} \nconst results: Result[] = \n"+ jsonToString + "\n\nexport const getResults = () => results;";
+
+ fs.writeFile('ApiResults.ts', readyToFile, (err: any) => {
+      if (err) {
+          throw err;
+      }
+      console.log("JSON data is saved.");
+
+  }); 
+  };
+  request.send()
+  },
+
     headers: {
     "Access-Control-Allow-Origin": "*",
  },
