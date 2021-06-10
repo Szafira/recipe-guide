@@ -8,7 +8,7 @@
       <ion-toolbar>
       <ion-label position="floating">Wyszukiwanie</ion-label>
       <ion-input type="text" v-model="inputVal" placeholder="Pick up ingredients"></ion-input>
-      <ion-button name="searchButton" @click="refresh(inputVal)" > Wyszukaj </ion-button>      
+      <ion-button name="searchButton" @click="ApiCall()" > Wyszukaj </ion-button>      
       </ion-toolbar>
       
     </ion-header>
@@ -35,16 +35,19 @@ import { IonContent, IonHeader, IonList, IonPage, IonRefresher, IonRefresherCont
 import RecipeListItem from '@/components/RecipeListItem.vue';
 import { defineComponent } from 'vue';
 import { getResults } from '@/data/ApiResults';
-import ApiCall from '@/data/ApiCall';
+import * as Api from '@/data/ApiCall'
 
-
+  function ApiCall()
+      {
+        return Api.ApiCall();
+      }
 export default defineComponent({
   name: 'Home',
   props:
     ['value'],
   data() {
     return {
-      results: getResults(),
+      results: getResults(),  
       inputValue: ['inputVal']
     }
   },
@@ -53,8 +56,15 @@ export default defineComponent({
       setTimeout(() => {
         ev.detail.complete();
       }, 3000);
+      {
+      ApiCall();
+      }
+      }
     },
-  },
+    headers: {
+    "Access-Control-Allow-Origin": "*",
+ },
+  
   components: {
     IonContent,
     IonHeader,
