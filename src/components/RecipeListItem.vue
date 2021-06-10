@@ -1,5 +1,5 @@
 <template>
-  <ion-item v-if="result" :routerLink="'/result/' + result.id" :detail="false" class="list-item">
+  <ion-item class="list-item">
     
     <ion-label class="ion-text-wrap">
           <ion-thumbnail slot="start">
@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { IonIcon, IonItem, IonLabel, IonNote } from '@ionic/vue';
+import { IonIcon, IonItem, IonLabel, IonThumbnail,IonButton, IonImg } from '@ionic/vue';
 import { chevronForward } from 'ionicons/icons';
 import { defineComponent } from 'vue';
 
@@ -31,6 +31,9 @@ export default defineComponent({
     IonIcon,
     IonItem,
     IonLabel,
+    IonImg,
+    IonButton,
+    IonThumbnail
     
   },
   props: {

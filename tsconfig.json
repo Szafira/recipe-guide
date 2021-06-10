@@ -33,7 +33,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/data/parse.js", "src/data/ApiCall.js"  ],
+, "src/data/parse.js", "src/data/ApiCall.ts"  ],
   "exclude": [
     "node_modules"
   ]
